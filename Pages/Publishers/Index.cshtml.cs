@@ -16,7 +16,7 @@ namespace Moisin_Andrei_Lab2.Pages.Publishers
 
         public IndexModel(Moisin_Andrei_Lab2.Data.Moisin_Andrei_Lab2Context context)
         {
-            _context = context;
+            _context = context; //test git
         }
 
         public IList<Publisher> Publisher { get;set; } = default!;
