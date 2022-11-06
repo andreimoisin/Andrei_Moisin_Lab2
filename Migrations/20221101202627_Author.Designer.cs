@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Moisin_Andrei_Lab2.Data;
 
@@ -11,9 +12,10 @@ using Moisin_Andrei_Lab2.Data;
 namespace Moisin_Andrei_Lab2.Migrations
 {
     [DbContext(typeof(Moisin_Andrei_Lab2Context))]
-    partial class Moisin_Andrei_Lab2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221101202627_Author")]
+    partial class Author
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,46 +78,6 @@ namespace Moisin_Andrei_Lab2.Migrations
                     b.ToTable("Book");
                 });
 
-            modelBuilder.Entity("Moisin_Andrei_Lab2.Models.BookCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.ToTable("BookCategory");
-                });
-
-            modelBuilder.Entity("Moisin_Andrei_Lab2.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Category");
-                });
-
             modelBuilder.Entity("Moisin_Andrei_Lab2.Models.Publisher", b =>
                 {
                     b.Property<int>("ID")
@@ -148,38 +110,9 @@ namespace Moisin_Andrei_Lab2.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Moisin_Andrei_Lab2.Models.BookCategory", b =>
-                {
-                    b.HasOne("Moisin_Andrei_Lab2.Models.Book", "Book")
-                        .WithMany("BookCategories")
-                        .HasForeignKey("BookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Moisin_Andrei_Lab2.Models.Category", "Category")
-                        .WithMany("BookCategories")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("Moisin_Andrei_Lab2.Models.Author", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Moisin_Andrei_Lab2.Models.Book", b =>
-                {
-                    b.Navigation("BookCategories");
-                });
-
-            modelBuilder.Entity("Moisin_Andrei_Lab2.Models.Category", b =>
-                {
-                    b.Navigation("BookCategories");
                 });
 
             modelBuilder.Entity("Moisin_Andrei_Lab2.Models.Publisher", b =>
