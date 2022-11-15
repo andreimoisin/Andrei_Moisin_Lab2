@@ -70,7 +70,7 @@ namespace Moisin_Andrei_Lab2.Pages.Books
                     break;
                 case "author_desc": 
                     BookD.Books = BookD.Books
-                        .OrderByDescending(s => s.Author.FullName); 
+                        .OrderByDescending(s => s.Author.LastName); 
                     break;
             }
         }
